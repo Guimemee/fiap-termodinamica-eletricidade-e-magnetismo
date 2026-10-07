@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 05: Lei de Biot-Savart e Lei de Ampère no Cálculo de Campo Magnético
+
+ENUNCIADO ORIGINAL:
+Calcular a indução magnética B no centro de uma bobina solenoide com N = 500 espiras, comprimento L = 0.25 m conduzindo uma corrente constante I = 3.5 A.

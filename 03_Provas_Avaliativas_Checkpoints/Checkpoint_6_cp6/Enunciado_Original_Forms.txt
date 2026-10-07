@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 06: Indução Eletromagnética: Lei de Faraday-Lenz e Autoindutância
+
+ENUNCIADO ORIGINAL:
+Calcular a força eletromotriz induzida fem (epsilon) e a corrente circulante em uma espira condutora de área A = 0.05 m^2 e resistência R = 2.0 ohms submetida a um campo magnético B(t) = 0.8 * cos(120*pi*t) Tesla.

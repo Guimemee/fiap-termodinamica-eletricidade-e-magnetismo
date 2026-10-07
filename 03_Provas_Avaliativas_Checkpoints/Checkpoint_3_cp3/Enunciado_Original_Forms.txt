@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 03: Campo Elétrico e Aplicação da Lei de Gauss
+
+ENUNCIADO ORIGINAL:
+Calcular a intensidade do campo elétrico E a uma distância r de um cilindro condutor infinitamente longo de raio R = 0.05 m carregado com densidade linear uniforme lambda = 8.0 nC/m.

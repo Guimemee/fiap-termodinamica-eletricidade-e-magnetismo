@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 04: Potencial Elétrico, Superfícies Equipotenciais e Capacitância
+
+ENUNCIADO ORIGINAL:
+Determinar a capacitância C e a energia eletrostática armazenada U_e em um capacitor de placas planas e paralelas de área A = 0.04 m^2 separadas por d = 2.0 mm com dielétrico mica (kappa = 5.4).

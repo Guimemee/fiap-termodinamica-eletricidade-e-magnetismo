@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 01: Primeira Lei da Termodinâmica e Processos Gasosos Ideais
+
+ENUNCIADO ORIGINAL:
+Calcular a variação de energia interna Delta U, o calor trocado Q e o trabalho W realizado por 2 mols de gás ideal monoatômico em uma expansão isotérmica reversível de V_1 = 0.02 m^3 para V_2 = 0.06 m^3 a T = 400 K.

@@ -1,0 +1,894 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FIAP • Termodinâmica, Eletricidade e Magnetismo | Turma 2ECR • 2023</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body);"></script>
+
+  <style>
+    :root {
+      --bg-dark: #120808;
+      --bg-card: #210f0f;
+      --bg-surface: #331818;
+      --border: #4d2424;
+      --text-main: #f3f4f6;
+      --text-muted: #94a3b8;
+      --primary: #ef4444;
+      --secondary: #f97316;
+      --accent: #eab308;
+      --radius: 12px;
+      --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'Fira Code', monospace;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+      line-height: 1.6;
+      padding-top: 80px;
+    }
+
+    [id] { scroll-margin-top: 95px; }
+
+    header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(10, 14, 23, 0.94);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      z-index: 1000;
+      padding: 10px 24px;
+    }
+
+    .header-container {
+      max-width: 1240px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .header-row-1 {
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: -0.2px;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .header-row-1 .brand-fiap {
+      color: var(--primary);
+      font-weight: 900;
+      letter-spacing: 0.5px;
+    }
+
+    .header-row-2 {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .turma-tag {
+      font-size: 0.82rem;
+      line-height: 1.3;
+      font-weight: 700;
+      color: #38bdf8;
+      background: rgba(56, 189, 248, 0.12);
+      padding: 3px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(56, 189, 248, 0.25);
+      letter-spacing: 0.3px;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .btn-repo-top {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.82rem;
+      line-height: 1.3;
+      font-weight: 700;
+      color: #ffffff;
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 5px 12px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    .btn-repo-top:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 14px rgba(56, 189, 248, 0.4);
+      filter: brightness(1.1);
+    }
+
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 24px;
+    }
+
+    .hero-banner {
+      margin-bottom: 32px;
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    }
+
+    .hero-banner img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 36px;
+    }
+
+    .metric-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 4px; height: 100%;
+      background: var(--primary);
+    }
+
+    .metric-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 6px;
+    }
+
+    .metric-val {
+      font-family: var(--font-mono);
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+
+    .metric-sub {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 32px;
+      overflow-x: auto;
+      padding-bottom: 8px;
+    }
+
+    .nav-tab {
+      padding: 10px 18px;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .nav-tab:hover, .nav-tab.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .cp-section {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 32px;
+      margin-bottom: 40px;
+    }
+
+    .section-badge {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 800;
+      color: var(--primary);
+      background: rgba(56, 189, 248, 0.1);
+      border: 1px solid var(--primary);
+      padding: 4px 10px;
+      border-radius: 20px;
+      margin-bottom: 12px;
+      letter-spacing: 0.5px;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 24px;
+      line-height: 1.3;
+    }
+
+    .problem-box, .plot-box {
+      background: var(--bg-dark);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .box-header {
+      background: var(--bg-surface);
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .copy-btn {
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--accent);
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .copy-btn:hover {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .box-content {
+      padding: 16px;
+      font-size: 0.95rem;
+      color: #cbd5e1;
+    }
+
+    .formula-box {
+      background: linear-gradient(135deg, rgba(56, 189, 248, 0.05), rgba(129, 140, 248, 0.05));
+      border: 1px solid var(--primary);
+      border-radius: 8px;
+      padding: 20px;
+      margin-bottom: 24px;
+      text-align: center;
+    }
+
+    .formula-title {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 1px;
+      margin-bottom: 12px;
+    }
+
+    .formula-latex {
+      font-size: 1.25rem;
+      color: #ffffff;
+      overflow-x: auto;
+      padding: 6px 0;
+    }
+
+    .symbolab-container {
+      margin-bottom: 24px;
+    }
+
+    .symbolab-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 14px;
+    }
+
+    .step-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .step-header {
+      margin-bottom: 8px;
+    }
+
+    .step-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .step-content {
+      font-size: 0.95rem;
+      color: #e2e8f0;
+    }
+
+    .plot-img-container {
+      padding: 16px;
+      background: var(--bg-dark);
+      text-align: center;
+    }
+
+    .plot-img-container img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 40px 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 60px;
+    }
+
+    footer a { color: var(--primary); text-decoration: none; font-weight: 600; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="header-container">
+      <div class="header-row-1">
+        <span class="brand-fiap">FIAP</span>
+        <span class="brand-sep">•</span>
+        <span>Engenharia da Computação</span>
+      </div>
+      <div class="header-row-2">
+        <span class="turma-tag">TURMA 2ECR • 2023</span>
+        <a href="https://github.com/Guimemee/fiap-termodinamica-eletricidade-e-magnetismo" class="btn-repo-top" target="_blank" rel="noopener">Ver Repositório ↗</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="hero-banner">
+      <img src="card_technologies.svg" alt="FIAP Termodinâmica, Eletricidade e Magnetismo Banner" />
+    </div>
+
+    <div class="metrics-grid">
+      
+        <div class="metric-card">
+          <div class="metric-label">RENDIMENTO CARNOT</div>
+          <div class="metric-val">η = 1 - Tc/Th</div>
+          <div class="metric-sub">Limite Termodinâmico Teórico Máximo</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">LEI DE GAUSS</div>
+          <div class="metric-val">∮ E·dA = q/ε₀</div>
+          <div class="metric-sub">Fluxo Elétrico em Superfície Fechada</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">INDUÇÃO FARADAY</div>
+          <div class="metric-val">ε = -dΦ/dt</div>
+          <div class="metric-sub">Força Eletromotriz Induzida</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-label">PRIMEIRA LEI</div>
+          <div class="metric-val">ΔU = Q - W</div>
+          <div class="metric-sub">Conservação de Energia em Gases Ideais</div>
+        </div>
+    </div>
+
+    <nav class="nav-tabs">
+      <a href="#cp1" class="nav-tab active">CP 1: Primeira Lei da Termodinâ...</a>
+      <a href="#cp2" class="nav-tab">CP 2: Ciclo de Carnot e Limites...</a>
+      <a href="#cp3" class="nav-tab">CP 3: Campo Elétrico e Aplicaçã...</a>
+      <a href="#cp4" class="nav-tab">CP 4: Potencial Elétrico, Super...</a>
+      <a href="#cp5" class="nav-tab">CP 5: Lei de Biot-Savart e Lei ...</a>
+      <a href="#cp6" class="nav-tab">CP 6: Indução Eletromagnética: ...</a>
+    </nav>
+
+    
+      <section id="cp1" class="cp-section">
+        <div class="section-badge">CHECKPOINT 01 • 2ECR 2023</div>
+        <h2 class="section-title">Primeira Lei da Termodinâmica e Processos Gasosos Ideais</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp1')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp1" class="box-content">
+            <p>Calcular a variação de energia interna Delta U, o calor trocado Q e o trabalho W realizado por 2 mols de gás ideal monoatômico em uma expansão isotérmica reversível de V_1 = 0.02 m^3 para V_2 = 0.06 m^3 a T = 400 K.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$W = nRT \ln\left(\frac{V_2}{V_1}\right), \quad \Delta U = 0 \implies Q = W = 2(8,314)(400)\ln(3) \approx 7.307 \text{ J}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Aplicação da Condição Isotérmica</span>
+              </div>
+              <div class="step-content">
+                <p>Para um gás ideal em processo isotérmico reversível, a temperatura é estritamente constante (\Delta T = 0).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Variação da Energia Interna</span>
+              </div>
+              <div class="step-content">
+                <p>\Delta U = n C_v \Delta T = 0 \text{ Joules}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Trabalho de Expansão pela Integral de Pressão</span>
+              </div>
+              <div class="step-content">
+                <p>W = \int_{V_1}^{V_2} P \, dV = \int_{V_1}^{V_2} \frac{nRT}{V} \, dV = nRT \ln\left(\frac{V_2}{V_1}\right).</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Resolução Numérica do Trabalho</span>
+              </div>
+              <div class="step-content">
+                <p>W = 2 \times 8,314 \times 400 \times \ln(3) = 6651,2 \times 1,0986 \approx 7.307 \text{ Joules}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Aplicação da Primeira Lei da Termodinâmica</span>
+              </div>
+              <div class="step-content">
+                <p>Q = \Delta U + W = 0 + 7.307 = 7.307 \text{ Joules absorvidos da fonte térmica quente}.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_1_cp1/grafico_resolucao.png" alt="Gráfico Primeira Lei da Termodinâmica e Processos Gasosos Ideais" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp2" class="cp-section">
+        <div class="section-badge">CHECKPOINT 02 • 2ECR 2023</div>
+        <h2 class="section-title">Ciclo de Carnot e Limites de Eficiência da Segunda Lei</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp2')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp2" class="box-content">
+            <p>Determinar o rendimento térmico máximo, o trabalho líquido por ciclo e a taxa de produção de entropia de uma máquina térmica de Carnot operando entre as temperaturas T_q = 600 K e T_f = 300 K.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$\eta_{Carnot} = 1 - \frac{T_f}{T_q} = 1 - \frac{300}{600} = 50,0\%, \quad \oint \frac{dQ}{T} = 0$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Rendimento Térmico Máximo Teórico</span>
+              </div>
+              <div class="step-content">
+                <p>\eta_{Carnot} = 1 - \frac{T_f}{T_q} = 1 - \frac{300}{600} = 0,50 \implies 50,0\%.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Calor Rejeitado para a Fonte Fria</span>
+              </div>
+              <div class="step-content">
+                <p>Se o calor absorvido da fonte quente for Q_q = 10.000 \text{ J}: Q_f = Q_q(1 - \eta) = 5.000 \text{ J}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Trabalho Líquido Realizado</span>
+              </div>
+              <div class="step-content">
+                <p>W_{líquido} = Q_q - Q_f = 10.000 - 5.000 = 5.000 \text{ J}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Balanço de Entropia do Ciclo</span>
+              </div>
+              <div class="step-content">
+                <p>\Delta S_{ciclo} = \frac{Q_q}{T_q} - \frac{Q_f}{T_f} = \frac{10.000}{600} - \frac{5.000}{300} = 16,67 - 16,67 = 0 \text{ J/K}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão da Segunda Lei</span>
+              </div>
+              <div class="step-content">
+                <p>Nenhuma máquina operando entre esses reservatórios pode superar 50% de rendimento sem violar o Teorema de Clausius.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_2_cp2/grafico_resolucao.png" alt="Gráfico Ciclo de Carnot e Limites de Eficiência da Segunda Lei" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp3" class="cp-section">
+        <div class="section-badge">CHECKPOINT 03 • 2ECR 2023</div>
+        <h2 class="section-title">Campo Elétrico e Aplicação da Lei de Gauss</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp3')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp3" class="box-content">
+            <p>Calcular a intensidade do campo elétrico E a uma distância r de um cilindro condutor infinitamente longo de raio R = 0.05 m carregado com densidade linear uniforme lambda = 8.0 nC/m.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$\oint \mathbf{E} \cdot d\mathbf{A} = \frac{q_{env}}{\epsilon_0} \implies E(r) = \frac{\lambda}{2\pi \epsilon_0 r}, \quad (r \ge R)$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Escolha da Superfície Gaussiana</span>
+              </div>
+              <div class="step-content">
+                <p>Adotar cilindro coaxial de raio r e comprimento L.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Cálculo do Fluxo Elétrico</span>
+              </div>
+              <div class="step-content">
+                <p>\Phi_E = \oint E \cdot dA = E(2\pi r L) nas paredes laterais, sendo o fluxo pelas tampas identicamente nulo.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Carga Envolvida</span>
+              </div>
+              <div class="step-content">
+                <p>q_{env} = \lambda L.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Igualdade da Lei de Gauss</span>
+              </div>
+              <div class="step-content">
+                <p>E(2\pi r L) = \frac{\lambda L}{\epsilon_0} \implies E(r) = \frac{\lambda}{2\pi \epsilon_0 r}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Resolução para r = 0.10 m (fora do condutor)</span>
+              </div>
+              <div class="step-content">
+                <p>E = \frac{8 \times 10^{-9}}{2\pi \times 8,854 \times 10^{-12} \times 0,10} \approx \frac{8 \times 10^{-9}}{5,563 \times 10^{-12}} = 1.438 \text{ N/C (ou V/m)}.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_3_cp3/grafico_resolucao.png" alt="Gráfico Campo Elétrico e Aplicação da Lei de Gauss" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp4" class="cp-section">
+        <div class="section-badge">CHECKPOINT 04 • 2ECR 2023</div>
+        <h2 class="section-title">Potencial Elétrico, Superfícies Equipotenciais e Capacitância</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp4')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp4" class="box-content">
+            <p>Determinar a capacitância C e a energia eletrostática armazenada U_e em um capacitor de placas planas e paralelas de área A = 0.04 m^2 separadas por d = 2.0 mm com dielétrico mica (kappa = 5.4).</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$C = \kappa \frac{\epsilon_0 A}{d}, \quad U_e = \frac{1}{2} C V^2$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Fórmula da Capacitância com Dielétrico</span>
+              </div>
+              <div class="step-content">
+                <p>C = \kappa \frac{\epsilon_0 A}{d} = 5,4 \times \frac{8,854 \times 10^{-12} \times 0,04}{0,002}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Cálculo Numérico da Capacitância</span>
+              </div>
+              <div class="step-content">
+                <p>C = \frac{1,9125 \times 10^{-12}}{0,002} \approx 956,2 \text{ pF}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Aplicação de Tensão Nominal de 100 V</span>
+              </div>
+              <div class="step-content">
+                <p>Q = C V = 956,2 \times 10^{-12} \times 100 = 95,62 \text{ nC}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Cálculo da Energia Eletrostática Armazenada</span>
+              </div>
+              <div class="step-content">
+                <p>U_e = \frac{1}{2} C V^2 = \frac{1}{2} (956,2 \times 10^{-12}) (100)^2 = 4,781 \, \mu\text{J}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão Eletrostática</span>
+              </div>
+              <div class="step-content">
+                <p>O dielétrico multiplicou a densidade de energia por 5,4 vezes comparado ao vácuo sem risco de ruptura dielétrica.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_4_cp4/grafico_resolucao.png" alt="Gráfico Potencial Elétrico, Superfícies Equipotenciais e Capacitância" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp5" class="cp-section">
+        <div class="section-badge">CHECKPOINT 05 • 2ECR 2023</div>
+        <h2 class="section-title">Lei de Biot-Savart e Lei de Ampère no Cálculo de Campo Magnético</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp5')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp5" class="box-content">
+            <p>Calcular a indução magnética B no centro de uma bobina solenoide com N = 500 espiras, comprimento L = 0.25 m conduzindo uma corrente constante I = 3.5 A.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$\oint \mathbf{B} \cdot d\mathbf{l} = \mu_0 I_{env} \implies B = \mu_0 \frac{N}{L} I = 4\pi \times 10^{-7} \times \left(\frac{500}{0,25}\right) \times 3,5 \approx 8,80 \text{ mT}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Aplicação da Lei de Ampère</span>
+              </div>
+              <div class="step-content">
+                <p>Escolha de laço retangular amperiano interno ao solenoide.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Densidade Linear de Espiras</span>
+              </div>
+              <div class="step-content">
+                <p>n = \frac{N}{L} = \frac{500}{0,25} = 2.000 \text{ espiras/metro}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Expressão do Campo Magnético Ideal</span>
+              </div>
+              <div class="step-content">
+                <p>B = \mu_0 n I, onde \mu_0 = 4\pi \times 10^{-7} \text{ T}\cdot\text{m/A}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Resolução Numérica</span>
+              </div>
+              <div class="step-content">
+                <p>B = (4\pi \times 10^{-7}) \times 2.000 \times 3,5 = 2,8 \pi \times 10^{-3} \approx 8,796 \times 10^{-3} \text{ T} = 8,80 \text{ mT}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão Magnética</span>
+              </div>
+              <div class="step-content">
+                <p>O campo interno é homogêneo e linearmente proporcional à corrente de magnetização.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_5_cp5/grafico_resolucao.png" alt="Gráfico Lei de Biot-Savart e Lei de Ampère no Cálculo de Campo Magnético" loading="lazy" />
+          </div>
+        </div>
+      </section>
+      <section id="cp6" class="cp-section">
+        <div class="section-badge">CHECKPOINT 06 • 2ECR 2023</div>
+        <h2 class="section-title">Indução Eletromagnética: Lei de Faraday-Lenz e Autoindutância</h2>
+        
+        <div class="problem-box">
+          <div class="box-header">
+            <span>📋 ENUNCIADO ORIGINAL DA AVALIAÇÃO</span>
+            <button class="copy-btn" onclick="copyText('prob-cp6')">Copiar Enunciado</button>
+          </div>
+          <div id="prob-cp6" class="box-content">
+            <p>Calcular a força eletromotriz induzida fem (epsilon) e a corrente circulante em uma espira condutora de área A = 0.05 m^2 e resistência R = 2.0 ohms submetida a um campo magnético B(t) = 0.8 * cos(120*pi*t) Tesla.</p>
+          </div>
+        </div>
+
+        <div class="formula-box">
+          <div class="formula-title">📐 MODELAGEM MATEMÁTICA &amp; FORMULAÇÃO FORMAL</div>
+          <div class="formula-latex">$$\mathcal{E} = -\frac{d\Phi_B}{dt} = -A \frac{dB}{dt} = 0,05 \times 0,8 \times 120\pi \sin(120\pi t) \approx 15,08 \sin(120\pi t) \text{ V}$$</div>
+        </div>
+
+        <div class="symbolab-container">
+          <h3 class="symbolab-title">💎 Resolução Algébrica Passo a Passo (Padrão Symbolab)</h3>
+          
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 1: Expressão do Fluxo Magnético</span>
+              </div>
+              <div class="step-content">
+                <p>\Phi_B(t) = B(t) \cdot A = 0,05 \times 0,8 \cos(120\pi t) = 0,04 \cos(120\pi t) \text{ Wb}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 2: Derivação Temporal pela Lei de Faraday</span>
+              </div>
+              <div class="step-content">
+                <p>\mathcal{E}(t) = -\frac{d\Phi_B}{dt} = -0,04 (-120\pi) \sin(120\pi t) = 4,8\pi \sin(120\pi t) \text{ V}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 3: Amplitude de Tensão Induzida</span>
+              </div>
+              <div class="step-content">
+                <p>\mathcal{E}_{pico} = 4,8\pi \approx 15,08 \text{ Volts}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 4: Corrente Induzida pela Lei de Ohm e Lei de Lenz</span>
+              </div>
+              <div class="step-content">
+                <p>I(t) = \frac{\mathcal{E}(t)}{R} = \frac{15,08}{2,0} \sin(120\pi t) = 7,54 \sin(120\pi t) \text{ A}.</p>
+              </div>
+            </div>
+            <div class="step-card">
+              <div class="step-header">
+                <span class="step-tag">Passo 5: Conclusão de Conservação de Energia</span>
+              </div>
+              <div class="step-content">
+                <p>A corrente cria um campo induzido que se opõe à variação do fluxo externo, validando a Lei de Lenz.</p>
+              </div>
+            </div>
+        </div>
+
+        <div class="plot-box">
+          <div class="box-header">
+            <span>📊 GRÁFICO COMPUTACIONAL &amp; VISUALIZAÇÃO DE RESULTADOS</span>
+            <span class="plot-tag">Matplotlib • Alta Resolução</span>
+          </div>
+          <div class="plot-img-container">
+            <img src="03_Provas_Avaliativas_Checkpoints/Checkpoint_6_cp6/grafico_resolucao.png" alt="Gráfico Indução Eletromagnética: Lei de Faraday-Lenz e Autoindutância" loading="lazy" />
+          </div>
+        </div>
+      </section>
+  </main>
+
+  <footer>
+    <p>Bacharelado em Engenharia da Computação • <strong>FIAP</strong></p>
+    <p>Autor: Guilherme Macário (<a href="https://github.com/Guimemee" target="_blank">@Guimemee</a>) • Turma 2ECR • Ano 2023</p>
+    <p>Repositório Oficial: <a href="https://github.com/Guimemee/fiap-termodinamica-eletricidade-e-magnetismo" target="_blank">github.com/Guimemee/fiap-termodinamica-eletricidade-e-magnetismo</a></p>
+  </footer>
+
+  <script>
+    function copyText(elemId) {
+      const text = document.getElementById(elemId).innerText;
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(text).then(() => alert('Enunciado copiado para a área de transferência!'));
+      } else {
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        document.body.appendChild(ta);
+        ta.select();
+        document.execCommand('copy');
+        document.body.removeChild(ta);
+        alert('Enunciado copiado!');
+      }
+    }
+  </script>
+</body>
+</html>

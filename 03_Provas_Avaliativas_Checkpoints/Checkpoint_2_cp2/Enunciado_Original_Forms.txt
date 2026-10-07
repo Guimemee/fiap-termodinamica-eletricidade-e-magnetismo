@@ -1,0 +1,7 @@
+FIAP • Engenharia da Computação
+Disciplina: Termodinâmica, Eletricidade e Magnetismo
+Turma 2ECR • Ano 2023
+Checkpoint 02: Ciclo de Carnot e Limites de Eficiência da Segunda Lei
+
+ENUNCIADO ORIGINAL:
+Determinar o rendimento térmico máximo, o trabalho líquido por ciclo e a taxa de produção de entropia de uma máquina térmica de Carnot operando entre as temperaturas T_q = 600 K e T_f = 300 K.
